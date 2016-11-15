@@ -1,6 +1,5 @@
 # coding: utf-8
 # license: GPLv3
-#fghjkl
 
 from solar_objects import Star, Planet
 
@@ -25,7 +24,9 @@ def read_space_objects_data_from_file(input_filename):
                 parse_star_parameters(line, star)
                 objects.append(star)
             else:
-                print("Unknown space object")
+                planet = Planet()
+                parse_planet_parameters(line, planet)
+                objects.append(planet)
 
     return objects
 
@@ -44,8 +45,14 @@ def parse_star_parameters(line, star):
     **line** — строка с описание звезды.
     **star** — объект звезды.
     """
-
-    pass  # FIXME: not done yet
+    splitted = line.strip().split()
+    star.r = float(splitted[1])
+    star.color = splitted[2]
+    star.m = float(splitted[3])
+    star.x = float(splitted[4])
+    star.y = float(splitted[5])
+    star.Vx = float(splitted[6])
+    star.Vy = float(splitted[7])
 
 def parse_planet_parameters(line, planet):
     """Считывает данные о планете из строки.
@@ -62,7 +69,15 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    pass  # FIXME: not done yet...
+    splitted = line.strip().split()
+    planet.r = float(splitted[1])
+    planet.color = splitted[2]
+    planet.m = float(splitted[3])
+    planet.x = float(splitted[4])
+    planet.y = float(splitted[5])
+    planet.Vx = float(splitted[6])
+    planet.Vy = float(splitted[7])
+
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
